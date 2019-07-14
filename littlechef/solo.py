@@ -30,7 +30,7 @@ def install(version):
     """Install Chef using the omnibus installer"""
     url = "https://www.chef.io/chef/install.sh"
     with hide('stdout', 'running'):
-        local("""python -c "import urllib; print urllib.urlopen('{0}').read()"'
+        local("""python -c "import urllib.request; print(urllib.request.urlopen('{0}').read().decode('utf-8'))"'
               ' > /tmp/install.sh""".format(url))
         put('/tmp/install.sh', '/tmp/install.sh')
         print("Downloading and installing Chef {0}...".format(version))
